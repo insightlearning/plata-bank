@@ -1,6 +1,7 @@
 package com.insight.learning.platabank.accountservice.model;
 
 import com.insight.learning.platabank.accountservice.enumerator.AccountStatus;
+import com.insight.learning.platabank.accountservice.enumerator.AccountType;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ public abstract class Account {
     private double balance;
     private AccountStatus status;
     private boolean ableToDoPayments;
+    private String type;
 
     public Account(AccountStatus status, boolean ableToDoPayments){
         this.number = new Random().nextInt(899_999) + 100_000;
@@ -24,5 +26,15 @@ public abstract class Account {
     }
 
     public abstract String initialStatusPolicy();
+
+    public String getType(){
+        if(this instanceof CheckingAccount){
+            return AccountType.CHECKING.toString();
+        } else if (this instanceof SavingAccount){
+            return AccountType.SAVING.toString();
+        } else{
+            return AccountType.SALARY.toString();
+        }
+    }
 
 }
