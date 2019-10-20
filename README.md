@@ -21,7 +21,7 @@
   GET http://localhost:8080/savingsAccounts/{id}<br>
   GET http://localhost:8080/salaryAccounts/{id}
   
-  > To get all Accounts
+  > To get all Accounts<br>
   GET http://localhost:8080/accounts/all
   
 <hr>
