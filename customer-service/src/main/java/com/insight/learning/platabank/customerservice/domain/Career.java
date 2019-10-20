@@ -1,12 +1,24 @@
 package com.insight.learning.platabank.customerservice.domain;
 
-import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import javax.persistence.*;
 
-@AllArgsConstructor
+@Data
+@RequiredArgsConstructor
+@Entity
 public class Career {
-    private String companyName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Address address;
+    @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private ContactPhone contactPhone;
     private String occupation;
+    private String companyName;
 
 }
