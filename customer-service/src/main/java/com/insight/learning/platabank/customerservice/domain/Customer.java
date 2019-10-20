@@ -2,14 +2,15 @@ package com.insight.learning.platabank.customerservice.domain;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Data
-@RequiredArgsConstructor
 @Entity
+@RequiredArgsConstructor
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,4 +34,16 @@ public class Customer {
     private String motherName;
     private String fullName;
 
+    public Customer(Long id, Career career, Address address, List<ContactPhone> contactsPhone, Date dateBirth, Sex sex, String fatherName, String motherName, String fullName) {
+        this.id = id;
+        this.career = career;
+        this.address = address;
+        this.contactsPhone = contactsPhone;
+        this.dateBirth = dateBirth;
+        this.sex = sex;
+        this.fatherName = fatherName;
+        this.motherName = motherName;
+        this.fullName = fullName;
+        this.status = status.PENDING;
+    }
 }
