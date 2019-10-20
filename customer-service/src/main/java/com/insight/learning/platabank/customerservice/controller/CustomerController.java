@@ -1,7 +1,7 @@
 package com.insight.learning.platabank.customerservice.controller;
 
 import com.insight.learning.platabank.customerservice.domain.Customer;
-import com.insight.learning.platabank.customerservice.repository.CustomerRepository;
+import com.insight.learning.platabank.customerservice.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -12,20 +12,30 @@ import java.util.Optional;
 public class CustomerController {
 
     @Autowired
-    CustomerRepository customerRepository;
+    CustomerService customerService;
 
     @PostMapping("/create")
     public Customer createCustomer(@RequestBody Customer customer){
-        return customerRepository.save(customer);
+        return customerService.createCustomer(customer);
     }
 
     @GetMapping("/all")
     public List<Customer> getAll(){
-        return customerRepository.findAll();
+        return customerService.getAll();
     }
 
     @GetMapping("{id}")
     public Optional<Customer> getCustomer(@PathVariable Long id){
-        return customerRepository.findById(id);
+        return customerService.getCustomer(id);
+    }
+
+    @GetMapping("/activate/{id}")
+    public void activateCustomer(@PathVariable Long id){
+        customerService.activateCustomer(id);
+    }
+
+    @GetMapping("/deactivate/{id}")
+    public void deactivateCustomer(@PathVariable Long id){
+        customerService.deactivateCustomer(id);
     }
 }
