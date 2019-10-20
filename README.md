@@ -1,6 +1,13 @@
 # plata-bank
 
 ## API
+
+### Eureka server
+  http://localhost:8761/
+  
+### API gateway server
+  http://localhost:8761/
+
 ### customer-service
 >.
 ### account-service
