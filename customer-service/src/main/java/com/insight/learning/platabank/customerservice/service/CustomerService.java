@@ -28,7 +28,6 @@ public class CustomerService {
     }
 
     public void activateCustomer(Long id) {
-
         getCustomer(id).map((Customer customer) -> {
             customer.setStatus(Status.ACTIVE);
             customerRepository.save(customer);

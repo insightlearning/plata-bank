@@ -3,6 +3,7 @@ package com.insight.learning.platabank.customerservice.controller;
 import com.insight.learning.platabank.customerservice.domain.Customer;
 import com.insight.learning.platabank.customerservice.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +16,7 @@ public class CustomerController {
     CustomerService customerService;
 
     @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
     public Customer createCustomer(@RequestBody Customer customer){
         return customerService.createCustomer(customer);
     }
