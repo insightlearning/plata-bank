@@ -27,22 +27,21 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public void activateCustomer(Long id){
-        Optional<Customer> optionalCustomer= getCustomer(id);
-        if(!getCustomer(id).isPresent()) {
-            throw new NoContentException("customer not found id " + id);
-        }
-        optionalCustomer.get().setStatus(Status.ACTIVE);
-        customerRepository.save(optionalCustomer.get());
+    public void activateCustomer(Long id) {
+
+        getCustomer(id).map((Customer customer) -> {
+            customer.setStatus(Status.ACTIVE);
+            customerRepository.save(customer);
+            return customer;
+        }).orElseThrow(NoContentException::new);
     }
 
     public void deactivateCustomer(Long id){
-        Optional<Customer> optionalCustomer= getCustomer(id);
-        if(!optionalCustomer.isPresent()) {
-            throw new NoContentException("customer not found id " + id);
-        }
-        optionalCustomer.get().setStatus(Status.INACTIVE);
-        customerRepository.save(optionalCustomer.get());
+        getCustomer(id).map((Customer customer) -> {
+            customer.setStatus(Status.INACTIVE);
+            customerRepository.save(customer);
+            return customer;
+        }).orElseThrow(NoContentException::new);
     }
 
 
