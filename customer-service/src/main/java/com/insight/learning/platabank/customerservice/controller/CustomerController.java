@@ -15,28 +15,12 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @PostMapping("/create")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Customer createCustomer(@RequestBody Customer customer){
-        return customerService.createCustomer(customer);
-    }
-
-    @GetMapping("/all")
-    public List<Customer> getAll(){
-        return customerService.getAll();
-    }
-
-    @GetMapping("{id}")
-    public Optional<Customer> getCustomer(@PathVariable Long id){
-        return customerService.getCustomer(id);
-    }
-
-    @GetMapping("/activate/{id}")
+    @PutMapping("/activate/{id}")
     public void activateCustomer(@PathVariable Long id){
         customerService.activateCustomer(id);
     }
 
-    @GetMapping("/deactivate/{id}")
+    @PutMapping("/deactivate/{id}")
     public void deactivateCustomer(@PathVariable Long id){
         customerService.deactivateCustomer(id);
     }
