@@ -4,17 +4,11 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
-
-@Data
 @RequiredArgsConstructor
+@Data
 @Entity
-public class Payee {
-
-    @Id
-    private Integer cpf;
-    private String name;
-    private Account account;
-
+public class Transference {
 }
+
+
