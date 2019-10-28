@@ -1,12 +1,8 @@
 package com.insight.learning.platabank.accountservice.repository;
 
 import com.insight.learning.platabank.accountservice.model.Account;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface AccountRepository extends Repository<Account, Integer> {
-    Account save(Account account);
-    Account findById(Integer number);
-    List<Account> findAll();
-}
+public interface AccountRepository extends CrudRepository<Account, Integer> {}
