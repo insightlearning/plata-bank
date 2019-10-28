@@ -22,7 +22,7 @@ public  class Account {
     public Account(Customer customer){
         this.number = new Random().nextInt(899_999) + 100_000;
         this.balance = 0;
-        this.status = AccountStatus.OPENED;
+        this.status = AccountStatus.ACTIVATED;
         this.customer = customer;
     }
 

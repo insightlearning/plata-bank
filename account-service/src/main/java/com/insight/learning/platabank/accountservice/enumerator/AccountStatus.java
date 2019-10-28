@@ -1,5 +1,5 @@
 package com.insight.learning.platabank.accountservice.enumerator;
 
 public enum AccountStatus {
-    OPENED, CLOSED, FROZEN;
+    ACTIVATED, DEACTIVATED, FROZEN;
 }
