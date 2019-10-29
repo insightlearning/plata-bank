@@ -6,6 +6,8 @@ import com.insight.learning.platabank.customerservice.repository.CustomerReposit
 import com.insight.learning.platabank.customerservice.utils.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,13 +16,20 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
+    public List<Customer> findAll(){
+        return customerRepository.findAll();
+    }
 
-    public Optional<Customer> getCustomer(Long id){
-        return customerRepository.findById(id);
+    public Optional<Customer> save(Customer customer){
+        return Optional.ofNullable(customerRepository.save(customer));
+    }
+
+    public Optional<Customer> findById(Long id){
+            return customerRepository.findById(id);
     }
 
     public void activateCustomer(Long id) {
-        getCustomer(id).map((Customer customer) -> {
+        findById(id).map((Customer customer) -> {
             customer.setStatus(Status.ACTIVE);
             customerRepository.save(customer);
             return customer;
@@ -28,7 +37,7 @@ public class CustomerService {
     }
 
     public void deactivateCustomer(Long id){
-        getCustomer(id).map((Customer customer) -> {
+        findById(id).map((Customer customer) -> {
             customer.setStatus(Status.INACTIVE);
             customerRepository.save(customer);
             return customer;
