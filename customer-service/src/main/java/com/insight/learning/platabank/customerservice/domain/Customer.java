@@ -1,7 +1,9 @@
 package com.insight.learning.platabank.customerservice.domain;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +13,7 @@ import java.util.List;
 @Entity
 @RequiredArgsConstructor
 public class Customer {
+    @Id
     private Long id;
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
