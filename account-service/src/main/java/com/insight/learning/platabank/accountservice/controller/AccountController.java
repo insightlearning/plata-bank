@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/account")
 public class AccountController {
 
     private final AccountService accountService;
@@ -15,14 +16,14 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping("/account/create")
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Account createAccount(@RequestBody Customer customer) {
         return accountService.createAccount(customer);
     }
 
-    @GetMapping("/account/{number}/balance")
-    public double deactivatedAccount(@PathVariable int number) {
+    @GetMapping("/{number}/balance")
+    public double getAccountBalance(@PathVariable int number) {
         return accountService.getAccountBalance(number);
     }
 }

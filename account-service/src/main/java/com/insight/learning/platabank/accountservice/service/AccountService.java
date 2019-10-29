@@ -1,5 +1,6 @@
 package com.insight.learning.platabank.accountservice.service;
 
+import com.insight.learning.platabank.accountservice.exception.AccountNotFoundException;
 import com.insight.learning.platabank.accountservice.model.Account;
 import com.insight.learning.platabank.accountservice.model.Customer;
 import com.insight.learning.platabank.accountservice.repository.AccountRepository;
@@ -26,9 +27,9 @@ public class AccountService {
        return accountRepository.save(new Account(customer));
     }
 
-    public Double getAccountBalance(int number){
+    public double getAccountBalance(int number){
         Optional<Account> account = accountRepository.findById(number);
-        return account.map(a -> a.getBalance()).orElseThrow(RuntimeException::new); //Need to create a CustomException
+        return account.map(a -> a.getBalance()).orElseThrow(AccountNotFoundException::new);
     }
 
 }
