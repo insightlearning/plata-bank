@@ -12,8 +12,9 @@ import javax.persistence.Id;
 @Entity
 public class Account {
 
-    @EmbeddedId
-    private AccountId accountId;
+    private Integer agency;
+    private Integer account;
+    private Integer dac;
     private Bank bank;
     private String type;
 
