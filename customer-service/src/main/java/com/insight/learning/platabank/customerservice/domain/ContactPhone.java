@@ -2,10 +2,7 @@ package com.insight.learning.platabank.customerservice.domain;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @RequiredArgsConstructor
@@ -13,8 +10,9 @@ import javax.persistence.Id;
 public class ContactPhone {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
+
     private String contactType;
     private String countryCode;
     private String areaCode;
