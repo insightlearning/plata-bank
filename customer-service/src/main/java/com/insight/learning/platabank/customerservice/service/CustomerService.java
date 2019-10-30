@@ -24,24 +24,20 @@ public class CustomerService {
         return Optional.ofNullable(customerRepository.save(customer));
     }
 
-    public Optional<Customer> findById(Long id){
-            return customerRepository.findById(id);
+    public Customer findById(Long id){
+            return customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
     }
 
     public void activateCustomer(Long id) {
-        findById(id).map((Customer customer) -> {
-            customer.setStatus(Status.ACTIVE);
-            customerRepository.save(customer);
-            return customer;
-        }).orElseThrow(() -> new CustomerNotFoundException(id));
+        Customer customer = findById(id);
+        customer.setStatus(Status.ACTIVE);
+        customerRepository.save(customer);
     }
 
     public void deactivateCustomer(Long id){
-        findById(id).map((Customer customer) -> {
-            customer.setStatus(Status.INACTIVE);
-            customerRepository.save(customer);
-            return customer;
-        }).orElseThrow(() -> new CustomerNotFoundException(id));
+        Customer customer = findById(id);
+        customer.setStatus(Status.INACTIVE);
+        customerRepository.save(customer);
     }
 
 
