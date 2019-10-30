@@ -25,7 +25,6 @@ public class Customer {
     private Date dateBirth;
 
     @Enumerated(EnumType.STRING)
-    @Setter(AccessLevel.PUBLIC)
     private Status status;
 
     @Enumerated(EnumType.STRING)
