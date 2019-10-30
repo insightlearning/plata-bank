@@ -29,15 +29,28 @@ public class AccountRepositoryTest {
     private AccountRepository accountRepository;
 
     @Test
-    public void PersistAccountTest(){
+    public void testPersistingAccountInTheDatabase(){
+        var account = givenAccount();
+
+        whenAccountIsPersisted(account);
+
+        thenAccountShouldBeFound(account);
+    }
+
+    public Account givenAccount(){
         var customer = new Customer();
         customer.setId(16416L);
         customer.setFullName("Bruno Padovese");
 
-        var account = new Account(customer);
+        return new Account(customer);
+    }
+
+    public void whenAccountIsPersisted(Account account){
         entityManager.persist(account);
         entityManager.flush();
+    }
 
+    private void thenAccountShouldBeFound(Account account) {
         Optional<Account> persistedAccount = accountRepository.findById(account.getNumber());
         int persistedAccountNumber = persistedAccount.map(a -> a.getNumber()).orElseThrow(RuntimeException::new);
 
