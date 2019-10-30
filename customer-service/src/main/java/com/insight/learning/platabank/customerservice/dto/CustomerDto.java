@@ -10,13 +10,13 @@ import java.util.List;
 
 @Value
 @Builder
-@AllArgsConstructor(access = AccessLevel.PRIVATE) //Hides the constructor to force usage of the Builder.
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class CustomerDto {
 
     private Long id;
-    private Career career;
-    private Address address;
-    private List<ContactPhone> contactsPhone;
+    private CareerDto career;
+    private AddressDto address;
+    private List<ContactPhoneDto> contactsPhone;
     private Date dateBirth;
     private Status status;
     private Sex sex;
