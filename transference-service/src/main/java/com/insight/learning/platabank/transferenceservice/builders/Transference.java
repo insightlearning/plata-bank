@@ -1,4 +1,4 @@
-package com.insight.learning.platabank.transferenceservice.model;
+package com.insight.learning.platabank.transferenceservice.builders;
 
 import com.insight.learning.platabank.transferenceservice.enumerator.TransferType;
 import lombok.*;

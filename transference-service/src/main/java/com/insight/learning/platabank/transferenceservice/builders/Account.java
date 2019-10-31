@@ -1,11 +1,9 @@
-package com.insight.learning.platabank.transferenceservice.model;
+package com.insight.learning.platabank.transferenceservice.builders;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Data
 @RequiredArgsConstructor

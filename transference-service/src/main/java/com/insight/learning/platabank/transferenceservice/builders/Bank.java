@@ -1,4 +1,4 @@
-package com.insight.learning.platabank.transferenceservice.model;
+package com.insight.learning.platabank.transferenceservice.builders;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

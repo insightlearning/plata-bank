@@ -1,10 +1,11 @@
-package com.insight.learning.platabank.transferenceservice.model;
+package com.insight.learning.platabank.transferenceservice.builders;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.text.DecimalFormat;
 
 
 @Data
@@ -13,8 +14,8 @@ import javax.persistence.Id;
 public class Payee {
 
     @Id
-    private Integer cpf;
+    private DecimalFormat cpf;
     private String name;
-    private Account account;
+    private Integer account;
 
 }
