@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
 public class Payee {
 
     @Id
-    private DecimalFormat cpf;
+    private String cpf;
     private String name;
     private Integer account;
 

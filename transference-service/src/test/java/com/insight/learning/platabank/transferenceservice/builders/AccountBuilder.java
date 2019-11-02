@@ -32,7 +32,7 @@ public class AccountBuilder {
         return this;
     }
 
-    public static Account account(){
-        return account();
+    public Account account(){
+        return account;
     }
 }

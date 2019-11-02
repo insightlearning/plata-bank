@@ -24,7 +24,7 @@ public class PayeeBuilder {
         return this;
     }
 
-    public PayeeBuilder withCpf(DecimalFormat cpf){
+    public PayeeBuilder withCpf(String cpf){
         payee.setCpf(cpf);
         return this;
     }
