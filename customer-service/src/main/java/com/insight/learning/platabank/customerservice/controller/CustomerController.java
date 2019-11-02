@@ -23,7 +23,6 @@ public class CustomerController {
     }
 
     @GetMapping
-    @ResponseBody
     public List<CustomerDto> findAll(){
         List<Customer> customers= customerService.findAll();
         return customers.stream()
