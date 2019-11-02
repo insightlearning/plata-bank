@@ -4,7 +4,6 @@ import com.insight.learning.platabank.customerservice.domain.Customer;
 import com.insight.learning.platabank.customerservice.domain.Status;
 import com.insight.learning.platabank.customerservice.repository.CustomerRepository;
 import com.insight.learning.platabank.customerservice.utils.CustomerNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.Optional;
 @Service
 public class CustomerService {
 
-    @Autowired
     CustomerRepository customerRepository;
+
+    public  CustomerService(CustomerRepository customerRepository){
+        this.customerRepository = customerRepository;
+    }
 
     public List<Customer> findAll(){
         return customerRepository.findAll();
