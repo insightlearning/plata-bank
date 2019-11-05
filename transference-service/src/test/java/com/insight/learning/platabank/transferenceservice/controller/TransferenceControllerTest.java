@@ -5,8 +5,8 @@ import com.insight.learning.platabank.transferenceservice.builders.*;
 import com.insight.learning.platabank.transferenceservice.dto.TransferenceDTO;
 import com.insight.learning.platabank.transferenceservice.enumerator.TransferType;
 import com.insight.learning.platabank.transferenceservice.mapper.TransferenceMapperImpl;
-import org.junit.Assert;
-import org.junit.Before;
+import com.insight.learning.platabank.transferenceservice.service.TransferenceService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -32,6 +32,9 @@ public class TransferenceControllerTest {
 
     @MockBean
     private TransferenceMapperImpl transferenceMapper;
+
+    @MockBean
+    private TransferenceService transferenceService;
 
     private MvcResult mvcResult;
 
@@ -60,10 +63,9 @@ public class TransferenceControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        Assert.assertNotNull(mvcResult);
     }
 
-    @Before
+    @BeforeEach
     public void setup(){
         sourceAccount = AccountBuilder
                 .oneAccount()

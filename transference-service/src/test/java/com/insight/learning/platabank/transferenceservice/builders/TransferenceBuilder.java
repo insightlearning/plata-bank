@@ -1,8 +1,7 @@
 package com.insight.learning.platabank.transferenceservice.builders;
 
 import com.insight.learning.platabank.transferenceservice.enumerator.TransferType;
-import com.insight.learning.platabank.transferenceservice.builders.Account;
-import com.insight.learning.platabank.transferenceservice.builders.Payee;
+
 import java.time.LocalDateTime;
 
 public class TransferenceBuilder {
@@ -20,31 +19,31 @@ public class TransferenceBuilder {
     }
 
     public TransferenceBuilder ofType(TransferType transferType){
-        transference.setTransferType(transferType);
+        this.transference.setTransferType(transferType);
         return this;
     }
 
     public TransferenceBuilder ammountValue(Double value){
-        transference.setAmount(value);
+        this.transference.setAmount(value);
         return this;
     }
 
     public TransferenceBuilder atDate(LocalDateTime now) {
-        transference.setTransferDate(now);
+        this.transference.setTransferDate(now);
         return this;
     }
 
     public TransferenceBuilder fromAccount(Account sourceAccount) {
-        transference.setAccount(sourceAccount);
+        this.transference.setAccount(sourceAccount);
         return this;
     }
 
     public TransferenceBuilder toPayee(Payee payee) {
-        transference.setPayee(payee);
+        this.transference.setPayee(payee);
         return this;
     }
 
     public Transference transference(){
-        return transference;
+        return this.transference;
     }
 }
