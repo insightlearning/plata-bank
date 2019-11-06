@@ -8,7 +8,7 @@ import lombok.Value;
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class ContactPhoneDto {
+public class ContactPhoneDTO {
 
     private Long id;
     private String contactType;

@@ -4,29 +4,29 @@ import com.insight.learning.platabank.customerservice.domain.Address;
 import com.insight.learning.platabank.customerservice.domain.Career;
 import com.insight.learning.platabank.customerservice.domain.ContactPhone;
 import com.insight.learning.platabank.customerservice.domain.Customer;
-import com.insight.learning.platabank.customerservice.dto.AddressDto;
-import com.insight.learning.platabank.customerservice.dto.CareerDto;
-import com.insight.learning.platabank.customerservice.dto.ContactPhoneDto;
-import com.insight.learning.platabank.customerservice.dto.CustomerDto;
+import com.insight.learning.platabank.customerservice.dto.AddressDTO;
+import com.insight.learning.platabank.customerservice.dto.CareerDTO;
+import com.insight.learning.platabank.customerservice.dto.ContactPhoneDTO;
+import com.insight.learning.platabank.customerservice.dto.CustomerDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface CustomerMapper {
 
-    CustomerDto toCustomerDto(Customer customer);
+    CustomerDTO toCustomerDTO(Customer customer);
 
-    Customer toCustomer(CustomerDto customer);
+    Customer toCustomer(CustomerDTO customerDTO);
 
-    AddressDto toAddressDto(Address address);
+    AddressDTO toAddressDTO(Address address);
 
-    Address toAddress(AddressDto addressDto);
+    Address toAddress(AddressDTO addressDTO);
 
-    ContactPhoneDto toContactPhoneDto(ContactPhone contactPhone);
+    ContactPhoneDTO toContactPhoneDTO(ContactPhone contactPhone);
 
-    ContactPhone toContactPhone(ContactPhoneDto contactPhone);
+    ContactPhone toContactPhone(ContactPhoneDTO contactPhoneDTO);
 
-    CareerDto toCareerDto(Career career);
+    CareerDTO toCareerDTO(Career career);
 
-    Career toCareer(CareerDto careerDto);
+    Career toCareer(CareerDTO careerDTO);
 
 }

@@ -1,7 +1,7 @@
 package com.insight.learning.platabank.customerservice.controller;
 
 import com.insight.learning.platabank.customerservice.domain.Customer;
-import com.insight.learning.platabank.customerservice.dto.CustomerDto;
+import com.insight.learning.platabank.customerservice.dto.CustomerDTO;
 import com.insight.learning.platabank.customerservice.mapper.CustomerMapper;
 import com.insight.learning.platabank.customerservice.service.AccountServiceProxy;
 import com.insight.learning.platabank.customerservice.service.CustomerService;
@@ -27,23 +27,23 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<CustomerDto> findAll(){
+    public List<CustomerDTO> findAll(){
         List<Customer> customers= customerService.findAll();
         return customers.stream()
-                .map(customer -> customerMapper.toCustomerDto(customer))
+                .map(customer -> customerMapper.toCustomerDTO(customer))
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public CustomerDto findById(@PathVariable Long id){
-        return customerMapper.toCustomerDto(customerService.findById(id));
+    public CustomerDTO findById(@PathVariable Long id){
+        return customerMapper.toCustomerDTO(customerService.findById(id));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerDto create(@RequestBody CustomerDto customerDto){
+    public CustomerDTO create(@RequestBody CustomerDTO customerDto){
         Customer customer = customerService.save(customerMapper.toCustomer(customerDto)).get();
-        return customerMapper.toCustomerDto(customer);
+        return customerMapper.toCustomerDTO(customer);
     }
 
 

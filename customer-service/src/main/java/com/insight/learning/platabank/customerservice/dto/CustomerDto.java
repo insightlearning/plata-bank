@@ -11,12 +11,12 @@ import java.util.List;
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class CustomerDto {
+public class CustomerDTO {
 
     private Long id;
-    private CareerDto career;
-    private AddressDto address;
-    private List<ContactPhoneDto> contactsPhone;
+    private CareerDTO career;
+    private AddressDTO address;
+    private List<ContactPhoneDTO> contactsPhone;
     private Date dateBirth;
     private Status status;
     private Sex sex;

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.insight.learning.platabank.customerservice.domain.*;
-import com.insight.learning.platabank.customerservice.dto.CustomerDto;
+import com.insight.learning.platabank.customerservice.dto.CustomerDTO;
 import com.insight.learning.platabank.customerservice.mapper.CustomerMapper;
 import com.insight.learning.platabank.customerservice.mapper.CustomerMapperImpl;
 import com.insight.learning.platabank.customerservice.service.AccountServiceProxy;
@@ -100,11 +100,11 @@ class CustomerControllerTest {
     private void whenRequestToFindCustomerIsMade(Long id) throws Exception {
         Customer customer = givenCustomer();
 
-        CustomerMapper customerMapper1 = new CustomerMapperImpl();
-        CustomerDto customerDto = customerMapper1.toCustomerDto(customer);
+        CustomerMapper customerMapperLocal = new CustomerMapperImpl();
+        CustomerDTO customerDto = customerMapperLocal.toCustomerDTO(customer);
 
         given(customerService.findById(id)).willReturn(customer);
-        given(customerMapper.toCustomerDto(customer)).willReturn((customerDto));
+        given(customerMapper.toCustomerDTO(customer)).willReturn((customerDto));
 
         String uri = "/customer/"+id;
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -175,13 +175,13 @@ class CustomerControllerTest {
     }
 
     private void whenRequestToCreateCustomerIsMade() throws Exception {
-        CustomerMapper customerMapper1 = new CustomerMapperImpl();
-        CustomerDto customerDto = customerMapper1.toCustomerDto(customer);
+        CustomerMapper customerMapperLocal = new CustomerMapperImpl();
+        CustomerDTO customerDto = customerMapperLocal.toCustomerDTO(customer);
         String inputJson = mapToJson(customer);
         String uri = "/customer";
-        given(customerMapper.toCustomer(Mockito.any(CustomerDto.class))).willReturn((customer));
+        given(customerMapper.toCustomer(Mockito.any(CustomerDTO.class))).willReturn((customer));
         given(customerService.save(customer)).willReturn(Optional.of(customer));
-        given(customerMapper.toCustomerDto(customer)).willReturn((customerDto));
+        given(customerMapper.toCustomerDTO(customer)).willReturn((customerDto));
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post(uri)

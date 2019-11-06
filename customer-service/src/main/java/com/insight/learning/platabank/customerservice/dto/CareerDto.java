@@ -8,11 +8,11 @@ import lombok.Value;
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class CareerDto {
+public class CareerDTO {
 
     private Long id;
-    private AddressDto address;
-    private ContactPhoneDto contactPhone;
+    private AddressDTO address;
+    private ContactPhoneDTO contactPhone;
     private String occupation;
     private String companyName;
 }

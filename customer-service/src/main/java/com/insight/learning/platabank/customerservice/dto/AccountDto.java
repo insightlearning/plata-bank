@@ -9,9 +9,9 @@ import lombok.Value;
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class AccountDto {
+public class AccountDTO {
     private int number;
     private double balance;
     private AccountStatus status;
-    private CustomerDto customerdto;
+    private CustomerDTO customerdto;
 }

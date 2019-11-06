@@ -8,7 +8,7 @@ import lombok.Value;
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class AddressDto {
+public class AddressDTO {
 
     private Long id;
     private String state;
