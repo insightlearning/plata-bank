@@ -1,8 +1,6 @@
 package com.insight.learning.platabank.customerservice.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.insight.learning.platabank.customerservice.JsonMapper;
 import com.insight.learning.platabank.customerservice.domain.*;
 import com.insight.learning.platabank.customerservice.dto.CustomerDTO;
 import com.insight.learning.platabank.customerservice.mapper.CustomerMapper;
@@ -141,7 +139,7 @@ class CustomerControllerTest {
 
     private void thanShouldReturnCustomers() throws IOException {
         String customerJsonResponse = mvcResult.getResponse().getContentAsString();
-        List<Customer> customersResponse= mapFromJsonList(customerJsonResponse,Customer.class);
+        List<Customer> customersResponse= JsonMapper.mapFromJsonList(customerJsonResponse,Customer.class);
         assertNotNull(customersResponse);
     }
 
@@ -164,7 +162,7 @@ class CustomerControllerTest {
     }
     private void thanShouldReturnCustomer() throws IOException {
         String customerJsonResponse = mvcResult.getResponse().getContentAsString();
-        Customer customerResponse= mapFromJson(customerJsonResponse,Customer.class);
+        Customer customerResponse= JsonMapper.mapFromJson(customerJsonResponse,Customer.class);
 
         assertEquals(customer, customerResponse);
     }
@@ -177,7 +175,7 @@ class CustomerControllerTest {
     private void whenRequestToCreateCustomerIsMade() throws Exception {
         CustomerMapper customerMapperLocal = new CustomerMapperImpl();
         CustomerDTO customerDto = customerMapperLocal.toCustomerDTO(customer);
-        String inputJson = mapToJson(customer);
+        String inputJson = JsonMapper.mapToJson(customer);
         String uri = "/customer";
         given(customerMapper.toCustomer(Mockito.any(CustomerDTO.class))).willReturn((customer));
         given(customerService.save(customer)).willReturn(Optional.of(customer));
@@ -199,20 +197,7 @@ class CustomerControllerTest {
     }
 
 
-    private static String mapToJson(Object obj) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(obj);
-    }
-    private static <T> T mapFromJson(String json, Class<T> clazz) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return objectMapper.readValue(json, clazz);
-    }
-    private static <T> List<T> mapFromJsonList(String json, Class<T> clazz) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, clazz));
-    }
+
 
 
 
