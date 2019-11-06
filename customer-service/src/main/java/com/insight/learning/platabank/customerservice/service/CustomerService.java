@@ -30,10 +30,11 @@ public class CustomerService {
             return customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id));
     }
 
-    public void activateCustomer(Long id) {
+    public Customer activateCustomer(Long id) {
         Customer customer = findById(id);
         customer.setStatus(Status.ACTIVE);
         customerRepository.save(customer);
+        return customer;
     }
 
     public void deactivateCustomer(Long id){
