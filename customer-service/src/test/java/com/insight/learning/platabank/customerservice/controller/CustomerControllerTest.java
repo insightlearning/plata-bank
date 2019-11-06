@@ -7,6 +7,7 @@ import com.insight.learning.platabank.customerservice.domain.*;
 import com.insight.learning.platabank.customerservice.dto.CustomerDto;
 import com.insight.learning.platabank.customerservice.mapper.CustomerMapper;
 import com.insight.learning.platabank.customerservice.mapper.CustomerMapperImpl;
+import com.insight.learning.platabank.customerservice.service.AccountServiceProxy;
 import com.insight.learning.platabank.customerservice.service.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -44,6 +45,9 @@ class CustomerControllerTest {
 
     @MockBean
     private CustomerService customerService;
+
+    @MockBean
+    private AccountServiceProxy accountServiceProxy;
 
 
     @Test
