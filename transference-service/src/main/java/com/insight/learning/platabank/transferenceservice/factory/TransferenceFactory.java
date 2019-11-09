@@ -8,14 +8,26 @@ import com.insight.learning.platabank.transferenceservice.service.impl.TEVTransf
 
 public class TransferenceFactory {
 
+    private static TEVTransferenceServiceImpl tevTransference;
+    private static TEDTransferenceServiceImpl tedTransference;
+    private static DOCTransferenceServiceImpl docTransference;
+
+    public TransferenceFactory(TEVTransferenceServiceImpl tevTransference, TEDTransferenceServiceImpl tedTransference, DOCTransferenceServiceImpl docTransference){
+        this.tevTransference = tevTransference;
+        this.docTransference = docTransference;
+        this.tedTransference = tedTransference;
+    }
+
     public static TransferenceService getTransference(TransferType transferType){
+        if(transferType == null) return new DOCTransferenceServiceImpl();
+
         switch(transferType){
             case TEV:
-                return new TEVTransferenceServiceImpl();
+                return TransferenceFactory.tevTransference;
             case TED:
-                return new TEDTransferenceServiceImpl();
+                return TransferenceFactory.tedTransference;
             case DOC :
-                return new DOCTransferenceServiceImpl();
+                return TransferenceFactory.docTransference;
         };
         return new DOCTransferenceServiceImpl();
     }
