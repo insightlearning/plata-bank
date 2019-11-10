@@ -2,7 +2,9 @@ package com.insight.learning.platabank.transferenceservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.insight.learning.platabank.transferenceservice.dto.TransferenceDTO;
+import com.insight.learning.platabank.transferenceservice.factory.TransferenceFactory;
 import com.insight.learning.platabank.transferenceservice.service.TransferenceService;
+import com.insight.learning.platabank.transferenceservice.service.impl.DOCTransferenceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -28,12 +31,20 @@ public class TransferenceControllerTest {
     @MockBean
     private TransferenceService transferenceService;
 
+    @MockBean
+    private TransferenceFactory transferenceFactory;
+
+    @MockBean
+    private static DOCTransferenceServiceImpl docTransferenceService;
+
     private MvcResult mvcResult;
 
-    TransferenceDTO docTransference;
+    private TransferenceDTO docTransference;
 
     @Test
     public void mustTransfer() throws Exception {
+
+        given(transferenceFactory.getTransference(null)).willReturn(docTransferenceService);
 
         RequestBuilder requestBuilder = post("/transference")
                 .accept(MediaType.APPLICATION_JSON)

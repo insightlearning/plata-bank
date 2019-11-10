@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class TransferenceFactory {
 
-    private static TEVTransferenceServiceImpl tevTransference;
-    private static TEDTransferenceServiceImpl tedTransference;
-    private static DOCTransferenceServiceImpl docTransference;
+    private TEVTransferenceServiceImpl tevTransference;
+    private TEDTransferenceServiceImpl tedTransference;
+    private DOCTransferenceServiceImpl docTransference;
 
     public TransferenceFactory(TEVTransferenceServiceImpl tevTransference, TEDTransferenceServiceImpl tedTransference, DOCTransferenceServiceImpl docTransference){
         this.tevTransference = tevTransference;
@@ -20,16 +20,16 @@ public class TransferenceFactory {
         this.tedTransference = tedTransference;
     }
 
-    public static TransferenceService getTransference(TransferType transferType){
-        if(transferType == null) return new DOCTransferenceServiceImpl();
+    public TransferenceService getTransference(TransferType transferType){
+        if(transferType == null) return docTransference;
 
         switch(transferType){
             case TEV:
-                return TransferenceFactory.tevTransference;
+                return tevTransference;
             case TED:
-                return TransferenceFactory.tedTransference;
+                return tedTransference;
             case DOC :
-                return TransferenceFactory.docTransference;
+                return docTransference;
             default: throw new IllegalArgumentException("No type transference found");
         }
     }
