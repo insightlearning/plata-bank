@@ -13,10 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/transference")
 public class TransferenceController {
 
+    private TransferenceFactory transferenceFactory;
+
+    public TransferenceController(TransferenceFactory transferenceFactory){
+        this.transferenceFactory = transferenceFactory;
+    }
+
     @PostMapping
     public ResponseEntity<TransferenceDTO> doTransference(TransferenceDTO transferenceDTO) {
 
-        TransferenceService transferenceService = TransferenceFactory.getTransference(transferenceDTO.getTransferType());
+        TransferenceService transferenceService = transferenceFactory.getTransference(transferenceDTO.getTransferType());
         transferenceService.doTransference(transferenceDTO);
 
         return new ResponseEntity<TransferenceDTO>(new TransferenceDTO(), HttpStatus.OK);
