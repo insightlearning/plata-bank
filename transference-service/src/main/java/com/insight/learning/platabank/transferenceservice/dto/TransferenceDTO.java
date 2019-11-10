@@ -1,7 +1,7 @@
 package com.insight.learning.platabank.transferenceservice.dto;
 
-import com.insight.learning.platabank.transferenceservice.builders.Account;
-import com.insight.learning.platabank.transferenceservice.builders.Payee;
+import com.insight.learning.platabank.transferenceservice.domain.Account;
+import com.insight.learning.platabank.transferenceservice.domain.Payee;
 import com.insight.learning.platabank.transferenceservice.enumerator.TransferType;
 import lombok.Data;
 

@@ -5,7 +5,9 @@ import com.insight.learning.platabank.transferenceservice.service.TransferenceSe
 import com.insight.learning.platabank.transferenceservice.service.impl.DOCTransferenceServiceImpl;
 import com.insight.learning.platabank.transferenceservice.service.impl.TEDTransferenceServiceImpl;
 import com.insight.learning.platabank.transferenceservice.service.impl.TEVTransferenceServiceImpl;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TransferenceFactory {
 
     private static TEVTransferenceServiceImpl tevTransference;
@@ -28,8 +30,8 @@ public class TransferenceFactory {
                 return TransferenceFactory.tedTransference;
             case DOC :
                 return TransferenceFactory.docTransference;
-        };
-        return new DOCTransferenceServiceImpl();
+            default: throw new IllegalArgumentException("No type transference found");
+        }
     }
 
 }

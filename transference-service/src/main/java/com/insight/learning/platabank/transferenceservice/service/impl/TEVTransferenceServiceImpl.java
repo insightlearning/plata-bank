@@ -2,8 +2,10 @@ package com.insight.learning.platabank.transferenceservice.service.impl;
 
 import com.insight.learning.platabank.transferenceservice.dto.TransferenceDTO;
 import com.insight.learning.platabank.transferenceservice.service.TransferenceService;
+import org.springframework.stereotype.Service;
 
-public class TEVTransferenceServiceImpl implements TransferenceService {
+@Service
+public class TEVTransferenceServiceImpl extends TransferenceService {
 
     @Override
     public TransferenceDTO doTransference(TransferenceDTO transferenceDTO) {
