@@ -21,7 +21,7 @@ public class TransferenceFactory {
     }
 
     public static TransferenceService getTransference(TransferType transferType){
-        if(transferType == null) return new DOCTransferenceServiceImpl();
+        if(transferType == null) return TransferenceFactory.tevTransference;
 
         switch(transferType){
             case TEV:
