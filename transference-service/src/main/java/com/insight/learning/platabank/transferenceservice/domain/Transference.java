@@ -1,4 +1,4 @@
-package com.insight.learning.platabank.transferenceservice.builders;
+package com.insight.learning.platabank.transferenceservice.domain;
 
 import com.insight.learning.platabank.transferenceservice.enumerator.TransferType;
 import lombok.*;
@@ -22,8 +22,12 @@ public class Transference {
     @Setter(AccessLevel.NONE)
     private LocalDateTime transactionDate = LocalDateTime.now();
 
+    @OneToOne
     private Account account;
+
+    @OneToOne
     private Payee payee;
+
     private Double amount;
     private LocalDateTime transferDate;
 

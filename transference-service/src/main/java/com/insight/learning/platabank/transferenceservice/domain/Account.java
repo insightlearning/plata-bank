@@ -1,16 +1,21 @@
-package com.insight.learning.platabank.transferenceservice.builders;
+package com.insight.learning.platabank.transferenceservice.domain;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Data
-@RequiredArgsConstructor
+@Entity
 public class Account {
 
-    private Integer agency;
+    @Id
     private Integer account;
-    private Integer dac;
+    @ManyToOne
     private Bank bank;
+    private Integer agency;
+    private Integer dac;
     private String type;
 
 }
