@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 public class Transference {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     private Long id;
 
