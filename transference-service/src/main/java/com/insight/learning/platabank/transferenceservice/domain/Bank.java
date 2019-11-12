@@ -13,7 +13,7 @@ public class Bank {
 
     @Id
     private Integer ISPB;
-    private Integer bankCode;
-    private String bankName;
-    private String bankNickName;
+    private Integer code;
+    private String name;
+    private String nickName;
 }
