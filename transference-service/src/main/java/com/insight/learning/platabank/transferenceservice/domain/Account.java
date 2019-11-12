@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Account {
 
     @Id
-    private Integer account;
+    private Integer id;
     @ManyToOne
     private Bank bank;
     private Integer agency;
