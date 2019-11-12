@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Data
@@ -14,7 +15,12 @@ public class Payee {
 
     @Id
     private String cpf;
+
+    @OneToOne
+    private Account account;
+
     private String name;
-    private Integer account;
+    private String nickName;
+    private String email;
 
 }
