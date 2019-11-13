@@ -1,9 +1,6 @@
 package com.insight.learning.platabank.customerservice.domain;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.Cascade;
+import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -13,23 +10,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+
+    @OneToOne(cascade=CascadeType.ALL)
     private Career career;
-    @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+
+    @OneToOne(cascade=CascadeType.ALL)
     private Address address;
-    @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ContactPhone> contactsPhone;
+
     @Temporal(TemporalType.DATE)
     private Date dateBirth;
+
     @Enumerated(EnumType.STRING)
     private Status status;
+
     @Enumerated(EnumType.STRING)
     private Sex sex;
+
     private String fatherName;
     private String motherName;
     private String fullName;
@@ -46,4 +46,6 @@ public class Customer {
         this.fullName = fullName;
         this.status = status.PENDING;
     }
+
+
 }
