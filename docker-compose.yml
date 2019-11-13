@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  eureka-naming-server:
+    image: eureka-naming-server
+    restart: always
+    expose:
+      - '8761'
+      
+  zuul-api-gateway-server:
+    image: zuul-api-gateway-server
+    restart: always
+    ports:
+      - '8765:8765'
+    depends_on:
+      - eureka-naming-server
+  
+  customer-service:
+    image: customer-service
+    restart: always
+    expose:
+      - '8080'
+    depends_on:
+      - eureka-naming-server
+    environment:
+      SERVICE_URL_DEFAULT_ZONE: "http://eureka-naming-server:8761/eureka"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
