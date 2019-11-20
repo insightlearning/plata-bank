@@ -9,11 +9,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 class PayeeRepositoryTest {
@@ -33,14 +31,15 @@ class PayeeRepositoryTest {
         thenPayeeShouldBeFoundById(payee);
     }
 
+
     @Test
-    void testFindAllPayees(){
-        List<Payee> payees = givenPayees();
+    void testDeletePayeeById(){
+        Payee payee = givenPayee();
 
-        whenPayeesIsPersisted(payees);
+        whenPayeeIsPersisted(payee);
+        whenPayeeIsDeleted(payee);
 
-        thenPayeesShouldBeFound(payees);
-
+        thenPayeeShouldNotBeFoundById(payee);
     }
 
     private void whenPayeeIsPersisted(Payee payee) {
@@ -48,19 +47,21 @@ class PayeeRepositoryTest {
         entityManager.flush();
     }
 
-    private void whenPayeesIsPersisted(List<Payee> payees) {
-        payees.stream().forEach(p -> whenPayeeIsPersisted(p));
+    private void whenPayeeIsDeleted(Payee payee) {
+        entityManager.remove(payee);
+        entityManager.flush();
     }
+
 
     private void thenPayeeShouldBeFoundById(Payee payee) {
         Optional<Payee> payeePersisted = payeeRepository.findById(payee.getId());
         assertEquals(payeePersisted.get().getId(), payee.getId());
 
     }
+    private void thenPayeeShouldNotBeFoundById(Payee payee) {
+        Optional<Payee> payeePersisted = payeeRepository.findById(payee.getId());
+        assertEquals(payeePersisted.isEmpty(), payeePersisted.isEmpty());
 
-    private void thenPayeesShouldBeFound(List<Payee> payees) {
-        List<Payee> payeesPersisted = payeeRepository.findAll();
-        assertTrue(payees.containsAll(payeesPersisted));
     }
 
     private Payee givenPayee() {
@@ -76,19 +77,6 @@ class PayeeRepositoryTest {
         payee.setAccount(accounts);
 
         return payee;
-    }
-
-    private List<Payee> givenPayees() {
-        Payee payee1 = givenPayee();
-
-        Payee payee2 = givenPayee();
-        payee2.setId(2222332l);
-
-        List<Payee> payees = new ArrayList<>();
-        payees.add(payee1);
-        payees.add(payee2);
-
-        return payees;
     }
 
     private Account getAccount() {
