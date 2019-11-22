@@ -5,6 +5,8 @@ import com.insight.learning.platabank.payeeservice.repository.PayeeRepository;
 import com.insight.learning.platabank.payeeservice.utils.PayeeNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PayeeService {
 
@@ -14,8 +16,8 @@ public class PayeeService {
         this.payeeRepository = payeeRepository;
     }
 
-    public Payee save(Payee payee) {
-        return payeeRepository.save(payee);
+    public Optional<Payee> save(Payee payee) {
+        return Optional.ofNullable(payeeRepository.save(payee));
     }
 
     public Payee findById(Long id) {

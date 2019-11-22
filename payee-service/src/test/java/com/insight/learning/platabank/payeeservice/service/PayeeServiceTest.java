@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -85,9 +84,9 @@ class PayeeServiceTest {
     }
     private void thanServiceShouldReturnPayeeCreated(Payee payee) {
 
-        Payee payeeFound = payeeService.save(payee);
+        Optional<Payee> payeeFound = payeeService.save(payee);
 
-        assertEquals(payeeFound, payee);
+        assertEquals(payeeFound.get(), payee);
     }
 
 
@@ -108,19 +107,6 @@ class PayeeServiceTest {
         payee.setAccount(accounts);
 
         return payee;
-    }
-
-    private List<Payee> givenPayees() {
-        Payee payee1 = givenPayee();
-
-        Payee payee2 = givenPayee();
-        payee2.setId(2222332l);
-
-        List<Payee> payees = new ArrayList<>();
-        payees.add(payee1);
-        payees.add(payee2);
-
-        return payees;
     }
 
     private Account getAccount() {
