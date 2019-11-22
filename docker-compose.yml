@@ -29,3 +29,17 @@ services:
       timeout: 10s
       retries: 3
 
+  payee-service:
+    image: payee-service
+    restart: always
+    expose:
+      - '8080'
+    depends_on:
+      - eureka-naming-server
+    environment:
+      SERVICE_URL_DEFAULT_ZONE: "http://eureka-naming-server:8761/eureka"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
