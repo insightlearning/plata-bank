@@ -1,9 +1,11 @@
 package com.insight.learning.platabank.transferenceservice.service;
 
-import com.insight.learning.platabank.transferenceservice.dto.TransferenceDTO;
+import com.insight.learning.platabank.transferenceservice.domain.Transference;
+
+import java.util.Optional;
 
 public abstract class TransferenceService {
 
-    public abstract TransferenceDTO doTransference(TransferenceDTO transferenceDTO);
+    public abstract Optional<Transference> doTransference(Transference transference);
 
 }

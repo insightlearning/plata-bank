@@ -13,6 +13,7 @@ public class Transference {
 
     @Id
     @Setter(AccessLevel.NONE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
@@ -21,10 +22,10 @@ public class Transference {
     @Setter(AccessLevel.NONE)
     private LocalDateTime transactionDate = LocalDateTime.now();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Account account;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Payee payee;
 
     private Double amount;
