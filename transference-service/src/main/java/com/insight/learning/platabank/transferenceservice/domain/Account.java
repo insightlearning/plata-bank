@@ -12,7 +12,7 @@ public class Account {
 
     @Id
     @Setter(AccessLevel.NONE)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Integer id;
 
     @ManyToOne

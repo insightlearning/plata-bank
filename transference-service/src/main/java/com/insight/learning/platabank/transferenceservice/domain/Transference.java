@@ -13,7 +13,7 @@ public class Transference {
 
     @Id
     @Setter(AccessLevel.NONE)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     @Enumerated(EnumType.STRING)
