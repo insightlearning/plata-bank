@@ -1,7 +1,7 @@
 package com.insight.learning.platabank.transferenceservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.insight.learning.platabank.transferenceservice.dto.TransferenceDTO;
+import com.insight.learning.platabank.transferenceservice.domain.Transference;
 import com.insight.learning.platabank.transferenceservice.factory.TransferenceFactory;
 import com.insight.learning.platabank.transferenceservice.service.TransferenceService;
 import com.insight.learning.platabank.transferenceservice.service.impl.DOCTransferenceServiceImpl;
@@ -35,11 +35,14 @@ public class TransferenceControllerTest {
     private TransferenceFactory transferenceFactory;
 
     @MockBean
+    private TransferenceController transferenceController;
+
+    @MockBean
     private static DOCTransferenceServiceImpl docTransferenceService;
 
     private MvcResult mvcResult;
 
-    private TransferenceDTO docTransference;
+    private Transference docTransference;
 
     @Test
     public void mustTransfer() throws Exception {
@@ -60,7 +63,7 @@ public class TransferenceControllerTest {
 
     @BeforeEach
     public void setup(){
-        docTransference = new TransferenceDTO();
+        docTransference = new Transference();
     }
 
 }

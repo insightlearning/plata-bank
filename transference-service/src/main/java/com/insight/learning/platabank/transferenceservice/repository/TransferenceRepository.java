@@ -5,4 +5,6 @@ import org.springframework.data.repository.Repository;
 
 public interface TransferenceRepository extends Repository<Transference,Long> {
 
+    Transference save(Transference transference);
+
 }
